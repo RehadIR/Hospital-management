@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="static/images/favicon.png" type="">
+
+  <title> Orthoc </title>
+  <style>
+    th{font-size:12px}
+  </style>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="static/https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="static/https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="static/css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="static/css/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" >
+            <span>
+              Orthoc
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="receptionprofile">Receptionist Profile <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="managepatient"> Manage Patient</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="managepatientdisplay"> Patient Details</a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="/"> Logout</a>
+              </li>
+              
+             
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container  ">
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src="static/images/about-img.jpg" alt="" height="300px" width="250px"style="position:relative;right:150px;bottom:140px">
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <h3 style="position:relative;bottom:30px;left:110px"> <b> OBSERVATION DETAILS </b> </h3>
+            <table>
+            <form method="post" enctype="multipart/form-data" style="position:relative;top:70px;left:70px">
+                {%csrf_token%}
+                <tr>
+                  <td>
+                <label class="form-label"> HEIGHT </label></td>
+                <td>
+                <input  class="form-control" type="text" name="a" required><br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                <label class="form-label"> WEIGHT </label>
+                </td>
+                <td>
+                <input class="form-control" type="text" name="b" required> <br>
+                </td>
+              </tr>
+             
+                <tr>
+                  <td>
+                <label class="form-label"> BP </label>
+                  </td>
+                  <td>
+                <input  class="form-control" type="text" name="c" required><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                <label class="form-label"> TEMPERATURE </label>
+                  </td>
+                  <td>
+                <input  class="form-control" type="text" name="d" required><br>
+                  </td>
+                </tr>
+                
+               
+                <tr>
+                  <td>
+                <label class="form-label"> OBSERVATION DETAILS </label>
+                  </td>
+                  <td>
+                <textarea  class="form-control" type="text" name="e" required> </textarea><br>
+                  </td>
+                </tr>
+               
+                
+                <tr>
+                  <td>
+                
+                <input class="btn btn-primary"style="position:relative;left:240px" type="submit" value="Add"> <br>
+                  </td>
+                </tr>
+            </form>
+          </table>
+        </div>
+    </div>
+           <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    {%if p%}
+                 <table class="table table-bordered table-stripped table-hover table-primary" style="position:relative;top:100px;left:230px">
+                    <tr> 
+                        <th class="text-center">ID</th>
+                        <th  class="text-center">HEIGHT </th>
+                        <th  class="text-center">WEIGHT </th>
+                       
+                        <th  class="text-center">BP </th>
+                        <th  class="text-center"> TEMPERATURE </th>
+                        <th  class="text-center">OBSERVATION DETAILS </th>
+                        
+                        
+                        
+                    </tr>
+                    <tr>
+                        {%for i in p%}
+                        <th  class="text-center"> {{forloop.counter}}</th>
+                        <th  class="text-center">{{i.1}} </th>
+                        <th  class="text-center">{{i.2}} </th>
+                        
+                        <th class="text-center">{{i.3}} </th>
+                        <th  class="text-center"> {{i.4}}</th>
+                        <th class="text-center">{{i.5}} </th>
+                        <td  class="text-center"> <a href="editpatientobservation?id={{i.0}}" class="btn btn-success"> edit </a></td>
+                        
+                    
+                       
+                        
+                        
+                    </tr>
+                    {%endfor%}
+                </table>
+                {%endif%}
+                    </div>
+                    </div>
+
+        
+           
+                
+
+ 
+  <script type="text/javascript" src="static/js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="static/https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="static/js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script type="text/javascript" src="static/https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- custom js -->
+  <script type="text/javascript" src="static/js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="static/https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+
+</body>
+
+</html>
